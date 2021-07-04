@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'photos',
-    'bootstrap3'
+    # 'bootstrap3'
 
     'photos.apps.PhotosConfig',
 
