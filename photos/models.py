@@ -21,6 +21,11 @@ class Image(models.Model):
     def __str__(self):
         return self.image_name
 
+    @classmethod
+    def search_by_category(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return news
+
 # class Location(models.Model):
 #     name=models.CharField(max_length=50)
 #     image=models.ForeignKey(Image,on_delete=models.CASCADE,)
