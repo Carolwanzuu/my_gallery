@@ -1,4 +1,4 @@
-from photos.models import Image
+from photos.models import Category, Photo
 from django.shortcuts import render
 from django.http  import HttpResponse
 
@@ -7,10 +7,16 @@ def welcome(request):
     return HttpResponse('Welcome to my Gallery')
 
 def gallery(request):
-    return render(request,'gallery.html')
+    categories = Category.objects.all()
+    photos = Photo.objects.all()
 
-def viewPhoto(request):
-    return render(request,'photo.html')
+    context = {'categories':categories,'photos':photos}
+
+    return render(request,'gallery.html',context)
+
+def viewPhoto(request,pk):
+     photos = Photo.objects.get(id=pk)
+     return render(request,'photo.html',{'photos':photos})
 
 def locatePhoto(request):
     return render(request,'location.html')

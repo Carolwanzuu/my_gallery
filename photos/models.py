@@ -10,16 +10,16 @@ class Category(models.Model):
 
 
 
-class Image(models.Model):
-    image = models.ImageField(null=False,blank=False)
-    image_name = models.CharField(max_length=30)
-    image_description= models.TextField(blank=True)
+class Phot(models.Model):
+    photo = models.ImageField(null=False,blank=False)
+    photo_name = models.CharField(max_length=30)
+    photo_description= models.TextField(blank=True)
     # location= models.CharField(max_length=100)
     category=models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True )
     pub_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.image_name
+        return self.photo_name
 
     @classmethod
     def search_by_category(cls,search_term):

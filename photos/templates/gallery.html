@@ -22,9 +22,10 @@
                         Categories
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Travel</li>
-                        <li class="list-group-item">Food</li>
-                        <li class="list-group-item">Artists</li>
+                        <li class="list-group-item">All</li>
+                        {% for category in categories %}
+                        <li class="list-group-item"> {{category.name}} </li>
+                        {% endfor %}
 
                     </ul>
 
