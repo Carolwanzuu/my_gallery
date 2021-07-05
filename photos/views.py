@@ -1,5 +1,5 @@
 from photos.models import Category, Photo
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 
 # Create your views here.
@@ -8,15 +8,15 @@ def welcome(request):
 
 def gallery(request):
     categories = Category.objects.all()
-    photos = Photo.objects.all()
+    photo = Photo.objects.all()
 
-    context = {'categories':categories,'photos':photos}
+    context = {'categories':categories,'photos':photo}
 
     return render(request,'gallery.html',context)
 
 def viewPhoto(request,pk):
-     photos = Photo.objects.get(id=pk)
-     return render(request,'photo.html',{'photos':photos})
+     photo = Photo.objects.get(id=pk)
+     return render(request,'photo.html',{'photos':photo})
 
 def locatePhoto(request):
     return render(request,'location.html')
