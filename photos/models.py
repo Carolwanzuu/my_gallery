@@ -10,10 +10,10 @@ class Category(models.Model):
 
 
 
-class Phot(models.Model):
+class Photo(models.Model):
     photo = models.ImageField(null=False,blank=False)
     photo_name = models.CharField(max_length=30)
-    photo_description= models.TextField(blank=True)
+    description= models.TextField(blank=True)
     # location= models.CharField(max_length=100)
     category=models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True )
     pub_date = models.DateTimeField(auto_now_add=True)
