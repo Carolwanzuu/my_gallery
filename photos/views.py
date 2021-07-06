@@ -7,8 +7,13 @@ def welcome(request):
     return HttpResponse('Welcome to my Gallery')
 
 def gallery(request):
+    category = request.GET.get('category')
+    if category == None:
+        photo = Photo.objects.all()
+    else:
+        photo = Photo.objects.filter(category__name=category)
     categories = Category.objects.all()
-    photo = Photo.objects.all()
+    # photos = Photo.objects.all()
 
     context = {'categories':categories,'photos':photo}
 
