@@ -111,8 +111,7 @@ if config('MODE')=="dev":
 # production
 else:
    DATABASES = {
-       'default': dj_database_url.config(default=config('DATABASE_URL')
-       )
+       'default': dj_database_url.config(default=config('DATABASE_URL'))
    }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
