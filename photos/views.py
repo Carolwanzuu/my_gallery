@@ -1,4 +1,4 @@
-from photos.models import Category, Photo
+from photos.models import Category, Photos
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse
 
@@ -9,9 +9,9 @@ def welcome(request):
 def gallery(request):
     category = request.GET.get('category')
     if category == None:
-        photo = Photo.objects.all()
+        photo = Photos.objects.all()
     else:
-        photo = Photo.objects.filter(category__name=category)
+        photo = Photos.objects.filter(category__name=category)
     categories = Category.objects.all()
     # photos = Photo.objects.all()
 
@@ -20,7 +20,7 @@ def gallery(request):
     return render(request,'gallery.html',context)
 
 def viewPhoto(request,pk):
-     photo = Photo.objects.get(id=pk)
+     photo = Photos.objects.get(id=pk)
      return render(request,'photo.html',{'photos':photo})
 
 def locatePhoto(request):
@@ -30,7 +30,7 @@ def search_image(request):
 
     if 'image' in request.GET and request.GET["image"]:
         search_term = request.GET.get("image")
-        searched_images = Photo.search_by_title(search_term)
+        searched_images = Photos.search_by_title(search_term)
         message = f"{search_term}"
 
         return render(request, 'search.html',{"message":message,"articles": searched_images})
