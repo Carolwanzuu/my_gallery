@@ -30,7 +30,7 @@ class Location(models.Model):
 
 
 
-class Photos(models.Model):
+class Photo(models.Model):
     image = models.ImageField(null=False, blank=False)
     photo_name = models.CharField(max_length=30)
     description= models.TextField(blank=True)
@@ -43,7 +43,7 @@ class Photos(models.Model):
 
     @classmethod
     def get_image_by_id(cls, image_id):
-        image = Photos.objects.get(id=image_id)
+        image = Photo.objects.get(id=image_id)
         return image.url
 
     @classmethod
@@ -53,7 +53,7 @@ class Photos(models.Model):
 
     @classmethod
     def filter_by_location(cls, location):
-        Image_Location = Photos.objects.filter(location_name=location).all()
+        Image_Location = Photo.objects.filter(location_name=location).all()
         return  Image_Location.url
 
     @classmethod
