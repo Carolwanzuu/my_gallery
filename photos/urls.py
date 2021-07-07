@@ -7,7 +7,7 @@ from . import views
 urlpatterns=[
     url('^$',views.gallery,name = 'gallery'),
     url(r'^photo/<str:pk>', views.viewPhoto, name= 'photo'),
-    url(r'^location/', views.locatePhoto, name='locate_photo'),
+    url(r'^location/', views.locatePhoto, name='location'),
     url(r'^search/', views.search_image, name='search_image')
 ]
 if settings.DEBUG:
