@@ -20,24 +20,27 @@
 
 <body class="m-5">
     <div class="container-fluid">
-        <h1>Welcome to My Gallery</h1>
+        <h1 class="text-center" id="text-primary"> <strong> Welcome to My Gallery</strong></h1>
     </div>
+    <br>
+    <br>
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">
-                        Categories
-                    </div>
+                    <div class="card-header"><strong> <h2>Categories</h2></strong></div>
+                       
+                    
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <a href="{% url 'gallery' %}">All</a>
+                        <li class="list-group-item"><strong>
+                            <a href="{% url 'gallery' %}">All</a></strong>
                         </li>
                         {% for cat in categories %}
-                        <li class=" list-group-item">
-                            <a href="{% url 'gallery' %}?cat={{cat.name}}">
+                        <li class=" list-group-item"><strong>
+                            <a href="{% url 'gallery' %}?category={{cat.name}}">
                                 {{cat.name}}
                             </a>
+                        </strong>
                         </li>
                         {% endfor %}
 
@@ -57,58 +60,59 @@
                             <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap">
 
                             <!-- <div class="card-body"> -->
-                                <h4><b>Category: {{photo.category.name}}</b></h4>
-                                <hr>
-                                <h6>Name: {{photo.photo_name}}</h6>
-                                
-                                <div class="card" >
-                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal{{photo.id}}" onclick="imageurl('{{photo.id}}-url')">View</button>
-                                    <!-- <input class="form-control input-lg" type="text" id="{{photo.id}}-url"> -->
+                            <h4><b>Category: {{photo.category.name}}</b></h4>
+                            <hr>
+                            <h6>Name: {{photo.photo_name}}</h6>
 
-                                </div>
-                                <!-- Modal -->
-                                <div id="myModal{{photo.id}}" class="modal fade" role="dialog">
-                                    <div class="modal-dialog">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close"
-                                                    data-dismiss="modal">&times;</button>
-                                                    <img src="{{photo.image.url}}" alt="">
-                                                <h4 class="modal-title">{{photo.photo_name}}</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p><b> {{photo.description}}</b></p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                            <div class="card">
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                    data-target="#myModal{{photo.id}}"
+                                    onclick="imageurl('{{photo.id}}-url')">View</button>
+                                <!-- <input class="form-control input-lg" type="text" id="{{photo.id}}-url"> -->
 
                             </div>
-                        </div>
-                        {% empty %}
-                        <h3>No photos...</h3>
-                        {% endfor %}
+                            <!-- Modal -->
+                            <div id="myModal{{photo.id}}" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
 
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <img src="{{photo.image.url}}" alt="">
+                                            <h4 class="modal-title">{{photo.photo_name}}</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><b> {{photo.description}}</b></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
+                    {% empty %}
+                    <h3>No photos...</h3>
+                    {% endfor %}
+
                 </div>
             </div>
-            <script>
-                //  <!-- script-->
-                function imageurl(element) {
-                    var image = document.getElementById(element);
-                    image.select();
-                    document.execCommand('copy');
-                    alert("Copied the link of image: " + image.value);
-                }
-            </script>
         </div>
+        <script>
+            //  <!-- script-->
+            function imageurl(element) {
+                var image = document.getElementById(element);
+                image.select();
+                document.execCommand('copy');
+                alert("Copied the link of image: " + image.value);
+            }
+        </script>
+    </div>
     </div>
 
 </body>
