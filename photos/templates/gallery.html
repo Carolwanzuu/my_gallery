@@ -23,94 +23,43 @@
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                        <a href="{% url 'gallery'}%">  All</a> </li>
+                            <a href="{% url 'gallery' %}">All</a>
+                        </li>
                         {% for category in categories %}
-                        <li class="list-group-item"> 
-                           <a href="{%url 'gallery' %}?category={{category.name}}"> {{category.name}} </a></li>
+                        <li class=" list-group-item">
+                            <a href="{% url 'gallery' %}?category={{category.name}}">
+                                {{category.name}}
+                            </a>
+                        </li>
                         {% endfor %}
 
+
+
                     </ul>
-
                 </div>
+
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="row">
+
                     {% for photo in photos %}
-                    <div class="photo" data-target="#modal{{photo.id}}">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img class="card-img-top" src="{{photo.photo.url}}" alt="Card Image Top">
-                                <div class="card-body">
-                                    <small>Category: {{photo.category.name}} </small>
-                                </div>
-                                <a class="btn btn-outline-dark btn-sm m-1" href="#">View</a>
+                    <div class="col-md-4">
+                        <div class="card my-2">
+                            <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap">
 
+                            <div class="card-body">
+                                <small>Category: {{photo.category.name}}</small>
                             </div>
-
+                            <a href="{% url 'photo' %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                     </div>
-                    <div class="modal" id="modal{{photo.id}}">
-                        <div class="d-flex justify-content-between align-items-center p-1 toptitle">
-                            <h2 class='text-center'>{{photo.image_name}}</h2>
-                            <button class="btn close-modal">&times;</button>
-                        </div>
-                        <div class="body">
-                            <img src="{{ photo.photo.url }}" alt="{{ photo.photo_name }}" class='img-fluid overlayimg'>
-                            <div class="d-flex justify-content-around align-items-center mt-3">
-                                <p>Location: {{ photo.location }}</p>
-                                <p>Category: {{ photo.category }}</p>
-                            </div>
-                            <p>{{ photo.image_desc }}</p>
-                            <div>
-                                <input type="text" value='{{ photo.image.url }}' class="copylink"
-                                    id="trial{{photo.id}}">
-                                <span class="btncopy" id="cpybtn{{ photo.id }}">Copy Image Link <i
-                                        class="fad fa-copy text-white copyicon" style="font-size: 25px;"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="overlay"></div>
                     {% empty %}
                     <h3>No photos...</h3>
                     {% endfor %}
 
-
-
-                    <!-- <div class="col-md-4">
-
-                        <div class="card">
-                            <img class="card-img-top" src="https://images.unsplash.com/photo-1524726240783-939bfdd633e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMCUyMGRlc3RpbmF0aW9uc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Card Image Top">
-                            <div class="card-body">
-                                <small>Category: Travel Destination</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="#">View</a>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-
-
-                        <div class="card">
-                            <img class="card-img-top"
-                                src="https://images.unsplash.com/photo-1524726240783-939bfdd633e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMCUyMGRlc3RpbmF0aW9uc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                alt="Card Image Top">
-                            <div class="card-body">
-                                <small>Category: Travel Destination</small>
-                            </div>
-                            <a class="btn btn-outline-dark btn-sm m-1" href="#">View</a>
-
-                        </div>
-
-                    </div> -->
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
 </body>
